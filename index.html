@@ -1,0 +1,1555 @@
+[Gaza 2.html](https://github.com/user-attachments/files/22095001/Gaza.2.html)
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaza PDF - منصة غزة لمعالجة ملفات PDF</title>
+    <meta name="description" content="منصة غزة لمعالجة ملفات PDF - أدوات احترافية مجانية لدعم غزة. دمج، تقسيم، ضغط، وتحويل ملفات PDF بسهولة. 100% من الأرباح لغزة.">
+    <meta name="keywords" content="غزة PDF, أدوات PDF, معالجة PDF, دعم غزة, دعم فلسطين, كريبتو, USDT, Bitcoin, Gemini AI">
+    <meta name="author" content="Gaza PDF Team">
+    <meta property="og:title" content="Gaza PDF - منصة غزة لمعالجة ملفات PDF">
+    <meta property="og:description" content="أدوات احترافية مجانية لمعالجة PDF - 100% من الأرباح لدعم غزة">
+    <meta property="og:image" content="https://gazapdf.com/images/og-image.jpg">
+    <meta property="og:url" content="https://gazapdf.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://gazapdf.com">
+    <link rel="alternate" hreflang="ar" href="https://gazapdf.com/ar">
+    <link rel="alternate" hreflang="en" href="https://gazapdf.com/en">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- PDF.js for text extraction and rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js"></script>
+
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5037132678119641"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;family=Roboto:wght@300;400;500;700&display=swap');
+        
+        /* === إعدادات الوضع الفاتح والداكن === */
+        :root {
+            --pal-black: #000000;
+            --pal-red: #d81e05;
+            --pal-white: #ffffff;
+            --pal-green: #007a3d;
+
+            /* Light Mode Variables */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+        }
+
+        html.dark {
+            /* Dark Mode Variables */
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-tertiary: #2c2c2c;
+            --text-primary: #e0e0e0;
+            --text-secondary: #adb5bd;
+            --border-color: #495057;
+            --shadow-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        body.en {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--pal-black) 0%, #2c3e50 50%, #343a40 100%);
+        }
+        
+        .text-gaza, h1.text-gaza, h2.text-gaza, h3.text-gaza, h4.text-gaza {
+            color: var(--pal-red);
+        }
+        
+        .bg-gaza {
+            background-color: var(--pal-red);
+        }
+
+        .bg-pal-black { 
+            background-color: var(--pal-black); 
+        }
+
+        .border-gaza {
+            border-color: var(--pal-red);
+        }
+        
+        .btn-primary {
+            background-color: var(--pal-red);
+            color: var(--pal-white);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(216, 30, 5, 0.2);
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background-color: #a71603;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(216, 30, 5, 0.3);
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+
+        header {
+            background-color: var(--bg-primary) !important;
+            border-bottom: 2px solid var(--pal-red) !important;
+            transition: background-color 0.3s ease;
+        }
+        
+        nav a {
+            color: var(--text-secondary);
+        }
+        nav a:hover {
+            color: var(--pal-red);
+        }
+
+        .tool-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px var(--shadow-color);
+            border-color: var(--pal-red);
+        }
+        
+        .drop-zone {
+            transition: all 0.3s ease;
+            border: 3px dashed var(--border-color);
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+        }
+        
+        .drop-zone.dragover {
+            background-color: var(--bg-tertiary);
+            border-color: var(--pal-red);
+        }
+        
+        .drop-zone .fa-cloud-upload-alt {
+            color: var(--pal-red);
+        }
+        
+        .file-item {
+            animation: slideIn 0.3s ease;
+            background-color: var(--bg-secondary);
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .progress-bar {
+            transition: width 0.3s ease;
+            background-color: var(--pal-green);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .loading-spinner {
+            border: 3px solid var(--bg-tertiary);
+            border-top: 3px solid var(--pal-red);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 900px;
+            border-radius: 15px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        }
+        
+        .close:hover {
+            color: var(--pal-red);
+        }
+        
+        .gaza-card {
+            background: var(--bg-secondary);
+            border-right: 4px solid var(--pal-green);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .gaza-card p {
+            color: var(--text-secondary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-right: 40px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: 7px;
+            top: 8px;
+            width: 2px;
+            height: 100%;
+            background: var(--border-color);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            right: -2px;
+            top: 8px;
+            width: 18px;
+            height: 18px;
+            background: var(--pal-red);
+            border-radius: 50%;
+            border: 4px solid var(--bg-primary);
+        }
+        
+        .stat-card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            padding: 1.5rem;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px var(--shadow-color);
+            border-left: 5px solid var(--pal-green);
+        }
+        
+        .stat-card .text-4xl {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        
+        /* Language switcher styles */
+        .lang-dropdown {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .lang-option:hover {
+            background-color: var(--bg-secondary);
+        }
+        
+        .lang-option.active {
+            background-color: var(--pal-red);
+            color: white;
+        }
+        
+        .crypto-address {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .profit-badge {
+            animation: pulse 2s infinite;
+            color: var(--pal-red);
+            font-weight: bold;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .footer-bg {
+            background-color: var(--pal-black);
+        }
+        
+        .contact-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--pal-red);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin: 1.25rem 0;
+        }
+        .contact-info-item i {
+            font-size: 1.25rem;
+            margin-left: 1rem;
+            color: var(--pal-red);
+        }
+
+        #theme-toggle .fa-sun { display: none; }
+        html.dark #theme-toggle .fa-sun { display: inline-block; }
+        html.dark #theme-toggle .fa-moon { display: none; }
+
+        /* Gemini Chat Section Styles */
+        #gaza-chat-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+        }
+        #gaza-chat-history {
+            height: 300px;
+            background-color: var(--bg-secondary);
+        }
+        .chat-message {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: var(--pal-red);
+            color: var(--pal-white);
+            align-self: flex-start; /* in rtl, this is left */
+        }
+        .gemini-message {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            align-self: flex-end; /* in rtl, this is right */
+        }
+        #gaza-chat-input {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        #gaza-chat-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--pal-red);
+        }
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--pal-black);
+            color: var(--pal-white);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            animation: fadeIn 0.5s, fadeOut 0.5s 4.5s;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        .ad-container-placeholder {
+            min-height: 90px;
+            padding: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-pal-black rounded-lg flex items-center justify-center ml-3">
+                            <span class="text-white font-bold text-lg">GP</span>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gaza" data-translate="siteName">غزة PDF</h1>
+                            <p class="text-xs profit-badge" data-translate="profitGaza">100% للأرباح لغزة</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-reverse space-x-6">
+                    <a href="#" onclick="showModal('about')" data-translate="navAbout">عن الموقع</a>
+                    <a href="#" onclick="showModal('support')" data-translate="navSupport">الدعم</a>
+                    <a href="#gaza-section" data-translate="navGaza">عن غزة</a>
+                    <a href="#contact-section" data-translate="navContact">تواصل معنا</a>
+                </nav>
+                
+                <div class="flex items-center space-x-reverse space-x-2">
+                    <div class="lang-switcher relative">
+                        <button onclick="toggleLangDropdown()" class="text-gray-600 dark:text-gray-300 hover:text-gaza transition flex items-center">
+                            <i class="fas fa-globe text-xl ml-2"></i>
+                            <span id="currentLang">العربية</span>
+                            <i class="fas fa-chevron-down text-sm mr-1"></i>
+                        </button>
+                        <div id="langDropdown" class="lang-dropdown hidden absolute mt-2 rounded-md shadow-lg z-20">
+                            <div class="lang-option active p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer" onclick="changeLanguage('ar')">العربية</div>
+                            <div class="lang-option p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer" onclick="changeLanguage('en')">English</div>
+                        </div>
+                    </div>
+                    <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-gaza transition">
+                        <i class="fas fa-moon text-xl"></i>
+                        <i class="fas fa-sun text-xl"></i>
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gaza transition">
+                        <i id="menu-open-icon" class="fas fa-bars text-xl"></i>
+                        <i id="menu-close-icon" class="fas fa-times text-xl hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-secondary">
+            <a href="#" onclick="showModal('about'); toggleMobileMenu();" class="block py-2 px-4 text-sm text-secondary hover:bg-tertiary" data-translate="navAbout">عن الموقع</a>
+            <a href="#" onclick="showModal('support'); toggleMobileMenu();" class="block py-2 px-4 text-sm text-secondary hover:bg-tertiary" data-translate="navSupport">الدعم</a>
+            <a href="#gaza-section" onclick="toggleMobileMenu()" class="block py-2 px-4 text-sm text-secondary hover:bg-tertiary" data-translate="navGaza">عن غزة</a>
+            <a href="#contact-section" onclick="toggleMobileMenu()" class="block py-2 px-4 text-sm text-secondary hover:bg-tertiary" data-translate="navContact">تواصل معنا</a>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero-gradient py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4" data-translate="heroTitle">
+                منصة غزة لمعالجة ملفات PDF
+            </h2>
+            <p class="text-xl text-gray-200 mb-8" data-translate="heroSubtitle">
+                أدوات احترافية مجانية لمعالجة ملفات PDF - دمج، تقسيم، ضغط، وتحويل
+            </p>
+            <div class="flex justify-center space-x-reverse space-x-4 mb-8">
+                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
+                    <span class="text-white font-semibold" data-translate="profit100">100% من الأرباح لدعم غزة</span>
+                </div>
+                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
+                    <span class="text-white font-semibold" data-translate="freeForever">مجاني للأبد</span>
+                </div>
+            </div>
+            <div class="flex justify-center space-x-reverse space-x-4">
+                <a href="#tools" class="btn-primary px-6 py-3 font-semibold">
+                    <i class="fas fa-tools ml-2"></i>
+                    <span data-translate="startNow">ابدأ الآن</span>
+                </a>
+                <a href="#donate-section" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-gaza transition font-semibold">
+                    <i class="fas fa-hand-holding-heart ml-2"></i>
+                    <span data-translate="donateNow">تبرع الآن</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gaza Section -->
+    <section id="gaza-section" class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gaza mb-4" data-translate="gazaTitle">غزة.. أرض الصمود والعزة</h2>
+                <p class="text-lg text-secondary max-w-4xl mx-auto" data-translate="gazaSubtitle">
+                    من قلب غزة، نقدم لكم هذه المنصة كدعم لأهلنا في غزة. كل استخدام للموقع هو مساهمة مباشرة في دعم صمود أهلنا في غزة.
+                </p>
+            </div>
+            
+            <!-- Gaza Statistics -->
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <div class="stat-card text-center">
+                    <div class="text-4xl mb-2">5000+</div>
+                    <p class="text-secondary font-medium" data-translate="gazaHistoryYears">سنة من التاريخ</p>
+                </div>
+                <div class="stat-card text-center">
+                    <div class="text-4xl mb-2">2M+</div>
+                    <p class="text-secondary font-medium" data-translate="gazaPopulation">نسمة من الصامدين</p>
+                </div>
+                <div class="stat-card text-center">
+                    <div class="text-4xl mb-2">18+</div>
+                    <p class="text-secondary font-medium" data-translate="gazaSiegeYears">عاماً من الحصار</p>
+                </div>
+                <div class="stat-card text-center">
+                    <div class="text-4xl mb-2">∞</div>
+                    <p class="text-secondary font-medium" data-translate="gazaHope">أمل لا ينتهي</p>
+                </div>
+            </div>
+
+            <!-- Gemini Ask About Gaza Section -->
+            <div id="gemini-ask-section" class="my-12 max-w-4xl mx-auto">
+                 <h3 class="text-2xl font-bold text-gaza mb-6 text-center" data-translate="askAboutGaza">✨ اسأل عن غزة</h3>
+                 <div id="gaza-chat-container" class="rounded-lg shadow-lg overflow-hidden">
+                     <div id="gaza-chat-history" class="p-4 overflow-y-auto flex flex-col">
+                         <!-- Chat messages will be appended here -->
+                     </div>
+                     <div class="p-4 flex items-center border-t border-border-color">
+                         <input type="text" id="gaza-chat-input" class="w-full px-4 py-2 rounded-full focus:outline-none" placeholder="اكتب سؤالك هنا...">
+                         <button id="gaza-chat-submit" class="btn-primary mr-3 px-5 py-2.5 rounded-full flex-shrink-0">
+                            <i class="fas fa-paper-plane"></i>
+                         </button>
+                     </div>
+                 </div>
+            </div>
+
+            
+            <!-- Gaza Timeline -->
+            <div class="bg-primary rounded-lg shadow-lg p-8 mb-12">
+                <h3 class="text-2xl font-bold text-gaza mb-8 text-center" data-translate="gazaTimeline">رحلة غزة عبر التاريخ</h3>
+                <div class="space-y-8">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="gaza-card">
+                            <h4 class="font-bold text-gaza mb-2" data-translate="ancientGaza">العصور القديمة (قبل 1500 ق.م)</h4>
+                            <p data-translate="ancientGazaDesc">مدينة كنعانية مزدهرة على مفترق الطرق التجارية بين قارتي آسيا وأفريقيا، ومركز حضاري ذو أهمية استراتيجية كبرى.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="gaza-card">
+                            <h4 class="font-bold text-gaza mb-2" data-translate="islamicGaza">العهد الإسلامي (637 م)</h4>
+                            <p data-translate="islamicGazaDesc">فتحت في عهد الخليفة عمر بن الخطاب، وأصبحت مركزاً ثقافياً وعلمياً، وهي مسقط رأس الإمام الشافعي، أحد أهم أئمة الفقه الإسلامي.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="gaza-card">
+                            <h4 class="font-bold text-gaza mb-2" data-translate="ottomanGaza">الحقبة العثمانية (1516 - 1917)</h4>
+                            <p data-translate="ottomanGazaDesc">شهدت استقراراً نسبياً وأصبحت مركزاً تجارياً وإدارياً مهماً في المنطقة، محافظة على مكانتها كجسر بين مصر والشام.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="gaza-card">
+                            <h4 class="font-bold text-gaza mb-2" data-translate="nakbaGaza">النكبة واللجوء (1948)</h4>
+                            <p data-translate="nakbaGazaDesc">بعد نكبة فلسطين، تضاعف عدد سكان القطاع ثلاث مرات باستقباله مئات الآلاف من اللاجئين من المدن والقرى المحتلة، لتصبح رمزاً حياً لقضية اللجوء.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="gaza-card">
+                            <h4 class="font-bold text-gaza mb-2" data-translate="occupationGaza">الاحتلال والحصار (1967 - الآن)</h4>
+                            <p data-translate="occupationGazaDesc">وقعت تحت الاحتلال الإسرائيلي، ومنذ عام 2007 تعاني من حصار خانق أثر على كافة مناحي الحياة، لكنها بقيت أيقونة للمقاومة والصمود.</p>
+                        </div>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="gaza-card">
+                            <h4 class="font-bold text-gaza mb-2" data-translate="gazaToday">غزة اليوم</h4>
+                            <p data-translate="gazaTodayDesc">رغم الدمار والتحديات غير المسبوقة، يواصل أهل غزة الصمود بإرادة لا تلين، متمسكين بأرضهم وأملهم الراسخ في الحرية والعودة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-section" class="py-16 bg-primary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gaza mb-4" data-translate="contactTitle">تواصل معنا</h2>
+                <p class="text-lg text-secondary" data-translate="contactSubtitle">نحن هنا من غزة لنستمع إليك وندعمك</p>
+            </div>
+            <div class="max-w-2xl mx-auto">
+                <div class="contact-card p-8 rounded-lg">
+                    <h3 class="text-xl font-bold text-gaza mb-4" data-translate="contactInfo">معلومات التواصل</h3>
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span class="text-primary">البريد الإلكتروني: yazanalkord05@gmail.com</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone"></i>
+                        <span class="text-primary">الهاتف: +970 594 850 560</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="text-primary">الموقع: غزة، فلسطين</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="donate-section" class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gaza mb-4" data-translate="donateTitle">ادعم غزة</h2>
+                <p class="text-lg text-secondary" data-translate="donateSubtitle">تبرعك يدعم صمود أهلنا في غزة</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-primary rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gaza mb-6 text-center" data-translate="cryptoDonationTitle">التبرع بالعملات الرقمية</h3>
+                    
+                    <div class="bg-green-500 bg-opacity-10 border border-green-500 border-opacity-30 rounded-lg p-6 mb-6">
+                        <h4 class="text-lg font-semibold text-green-400 mb-4" data-translate="whyCrypto">لماذا التبرع بالكريبتو؟</h4>
+                        <ul class="space-y-2 text-secondary">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 ml-2"></i>
+                                <span data-translate="cryptoBenefit1">تحويلات سريعة وآمنة عبر الحدود</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 ml-2"></i>
+                                <span data-translate="cryptoBenefit2">رسوم منخفضة مقارنة بالتحويلات التقليدية</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 ml-2"></i>
+                                <span data-translate="cryptoBenefit3">وصول مباشر للمستفيدين بدون وسطاء</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 ml-2"></i>
+                                <span data-translate="cryptoBenefit4">خصوصية عالية وأمان للمعاملات</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-tertiary rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-gaza mb-3 flex items-center">
+                                <i class="fab fa-bitcoin text-orange-500 text-xl"></i>
+                                <span class="ms-3" data-translate="bitcoin">Bitcoin (BTC)</span>
+                            </h4>
+                            <p class="text-sm text-secondary mb-3" data-translate="bitcoinAddress">عنوان المحفظة:</p>
+                            <div class="crypto-address text-primary mb-3 break-all">bc1q5c8cnefys6uu5ncdgkvylfpdnd6n4p0lpnv28h</div>
+                            <div class="bg-gray-200 p-4 rounded text-center">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1q5c8cnefys6uu5ncdgkvylfpdnd6n4p0lpnv28h" alt="Bitcoin QR" class="mx-auto">
+                            </div>
+                        </div>
+                        
+                        <div class="bg-tertiary rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-gaza mb-3 flex items-center">
+                                <i class="fab fa-ethereum text-blue-500 text-xl"></i>
+                                <span class="ms-3" data-translate="usdt">USDT (ERC20)</span>
+                            </h4>
+                            <p class="text-sm text-secondary mb-3" data-translate="ethereumAddress">عنوان المحفظة:</p>
+                            <div class="crypto-address text-primary mb-3 break-all">0xeed2da80a6af0bc744bcda6645ea3b894afd009a</div>
+                            <div class="bg-gray-200 p-4 rounded text-center">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0xeed2da80a6af0bc744bcda6645ea3b894afd009a" alt="USDT QR" class="mx-auto">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-yellow-500 bg-opacity-10 border border-yellow-500 border-opacity-30 rounded-lg p-4">
+                        <h4 class="font-semibold text-yellow-400 mb-2" data-translate="importantNote">ملاحظة هامة:</h4>
+                        <p class="text-yellow-300 text-sm" data-translate="cryptoNote">
+                            جميع التبرعات بالعملات الرقمية تذهب بالكامل لدعم أهالي غزة. نحن نستخدم محافظ آمنة ومشفرة لضمان وصول التبرعات لمستحقيها.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-16 bg-primary">
+       <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gaza mb-12" data-translate="toolsTitle">أدواتنا</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                 <div class="tool-card p-6 text-center cursor-pointer" onclick="selectTool('merge')">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-object-group text-green-600 text-2xl"></i></div>
+                    <h3 class="font-semibold text-primary mb-2" data-translate="mergePdf">دمج PDF</h3>
+                    <p class="text-sm text-secondary" data-translate="mergePdfDesc">دمج ملفات PDF متعددة</p>
+                </div>
+                <div class="tool-card p-6 text-center cursor-pointer" onclick="selectTool('split')">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-cut text-blue-600 text-2xl"></i></div>
+                    <h3 class="font-semibold text-primary mb-2" data-translate="splitPdf">تقسيم PDF</h3>
+                    <p class="text-sm text-secondary" data-translate="splitPdfDesc">تقسيم ملف PDF إلى صفحات</p>
+                </div>
+                <div class="tool-card p-6 text-center cursor-pointer" onclick="selectTool('compress')">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-compress text-purple-600 text-2xl"></i></div>
+                    <h3 class="font-semibold text-primary mb-2" data-translate="compressPdf">ضغط PDF</h3>
+                    <p class="text-sm text-secondary" data-translate="compressPdfDesc">تقليل حجم ملفات PDF</p>
+                </div>
+                <div class="tool-card p-6 text-center cursor-pointer" onclick="selectTool('pdf2jpg')">
+                    <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-file-image text-pink-600 text-2xl"></i></div>
+                    <h3 class="font-semibold text-primary mb-2" data-translate="pdfToJpg">PDF إلى JPG</h3>
+                    <p class="text-sm text-secondary" data-translate="pdfToJpgDesc">تحويل PDF إلى صور</p>
+                </div>
+                <div class="tool-card p-6 text-center cursor-pointer" onclick="selectTool('pdf2word')">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-file-word text-indigo-600 text-2xl"></i></div>
+                    <h3 class="font-semibold text-primary mb-2" data-translate="pdfToWord">PDF إلى Word</h3>
+                    <p class="text-sm text-secondary" data-translate="pdfToWordDesc">استخراج النصوص من PDF</p>
+                </div>
+                <div class="tool-card p-6 text-center cursor-pointer" onclick="selectTool('rotate')">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-sync-alt text-yellow-600 text-2xl"></i></div>
+                    <h3 class="font-semibold text-primary mb-2" data-translate="rotatePdf">تدوير PDF</h3>
+                    <p class="text-sm text-secondary" data-translate="rotatePdfDesc">تدوير صفحات PDF</p>
+                </div>
+                <div class="tool-card p-6 text-center cursor-pointer" onclick="selectTool('protect')">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-lock text-red-600 text-2xl"></i></div>
+                    <h3 class="font-semibold text-primary mb-2" data-translate="protectPdf">حماية PDF</h3>
+                    <p class="text-sm text-secondary" data-translate="protectPdfDesc">إضافة كلمة مرور</p>
+                </div>
+                <div class="tool-card p-6 text-center cursor-pointer" onclick="selectTool('unlock')">
+                    <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-unlock text-teal-600 text-2xl"></i></div>
+                    <h3 class="font-semibold text-primary mb-2" data-translate="unlockPdf">فتح PDF</h3>
+                    <p class="text-sm text-secondary" data-translate="unlockPdfDesc">إزالة كلمة المرور</p>
+                </div>
+                <div class="tool-card p-6 text-center cursor-pointer" onclick="selectTool('watermark')">
+                    <div class="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-stamp text-gray-600 text-2xl"></i></div>
+                    <h3 class="font-semibold text-primary mb-2" data-translate="watermarkPdf">علامة مائية</h3>
+                    <p class="text-sm text-secondary" data-translate="watermarkPdfDesc">إضافة نص أو صورة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Upload Section -->
+    <section id="uploadSection" class="py-16 bg-secondary hidden">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="bg-primary rounded-lg shadow-lg p-8 relative">
+                <button onclick="document.getElementById('uploadSection').classList.add('hidden');" class="close text-secondary hover:text-red-500 absolute top-4 left-4 text-2xl">&times;</button>
+                <h2 id="toolTitle" class="text-3xl font-bold text-gaza mb-6 text-center"></h2>
+                
+                <!-- Tool Specific Options -->
+                <div id="toolOptions" class="my-6 hidden">
+                    <div id="rotateOptions" class="hidden">
+                        <label class="block text-secondary mb-2" data-translate="rotationAngle">زاوية التدوير:</label>
+                        <select id="rotationAngleSelect" class="w-full p-2 border rounded bg-secondary border-border-color text-primary">
+                            <option value="90">90°</option>
+                            <option value="180">180°</option>
+                            <option value="270">270°</option>
+                        </select>
+                    </div>
+                     <div id="protectOptions" class="hidden space-y-4">
+                        <div>
+                            <label class="block text-secondary mb-2" data-translate="password">كلمة المرور:</label>
+                            <input type="password" id="protectPassword" class="w-full p-2 border rounded bg-secondary border-border-color text-primary" placeholder="أدخل كلمة المرور">
+                        </div>
+                        <div>
+                            <label class="block text-secondary mb-2" data-translate="confirmPassword">تأكيد كلمة المرور:</label>
+                            <input type="password" id="protectPasswordConfirm" class="w-full p-2 border rounded bg-secondary border-border-color text-primary" placeholder="أعد إدخال كلمة المرور">
+                        </div>
+                    </div>
+                    <div id="unlockOptions" class="hidden">
+                        <label class="block text-secondary mb-2" data-translate="password">كلمة المرور (إذا كان الملف محمياً):</label>
+                        <input type="password" id="unlockPassword" class="w-full p-2 border rounded bg-secondary border-border-color text-primary" placeholder="أدخل كلمة المرور (اختياري)">
+                    </div>
+                    <div id="watermarkOptions" class="hidden space-y-4">
+                        <div>
+                            <label class="block text-secondary mb-2" data-translate="watermarkText">نص العلامة المائية:</label>
+                             <input type="text" id="watermarkText" class="w-full p-2 border rounded bg-secondary border-border-color text-primary" placeholder="مثال: سري للغاية">
+                        </div>
+                    </div>
+                     <div id="splitOptions" class="hidden space-y-4">
+                         <label class="block text-secondary mb-2" data-translate="splitMethod">طريقة التقسيم:</label>
+                         <div class="flex items-center space-x-4 space-x-reverse">
+                            <label><input type="radio" name="splitType" value="pages" checked class="ml-2"> <span data-translate="splitEachPage">تقسيم كل صفحة</span></label>
+                            <label><input type="radio" name="splitType" value="range" class="ml-2"> <span data-translate="splitByRange">تحديد نطاق</span></label>
+                         </div>
+                         <div id="splitRange" class="hidden">
+                              <input type="text" id="pageRange" class="w-full p-2 border rounded bg-secondary border-border-color text-primary mt-2" placeholder="مثال: 1-5, 8, 10-12">
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Drop Zone -->
+                <div id="dropZone" class="drop-zone rounded-lg p-12 text-center cursor-pointer hover:bg-tertiary transition">
+                    <i class="fas fa-cloud-upload-alt text-6xl mb-4"></i>
+                    <p class="text-xl text-secondary mb-2" data-translate="dragDrop">اسحب وأفلت الملفات هنا</p>
+                    <p class="text-gray-500 mb-4" data-translate="or">أو</p>
+                    <button onclick="document.getElementById('fileInput').click()" class="btn-primary px-6 py-3 rounded-lg font-semibold">
+                        <span data-translate="chooseFiles">اختر الملفات</span>
+                    </button>
+                    <input type="file" id="fileInput" class="hidden" multiple accept="application/pdf">
+                </div>
+                
+                <!-- File List -->
+                <div id="fileList" class="mt-8 hidden">
+                    <h3 class="text-lg font-semibold text-gaza mb-4" data-translate="selectedFiles">الملفات المحددة:</h3>
+                    <div id="filesContainer" class="space-y-3"></div>
+                </div>
+                
+                <!-- Process Buttons -->
+                <div id="processSection" class="mt-8 text-center hidden">
+                    <button onclick="processFiles()" class="btn-primary px-8 py-3 rounded-lg text-lg font-semibold">
+                        <span data-translate="processFiles">معالجة الملفات</span>
+                    </button>
+                    <button id="summarizeBtn" onclick="summarizePDF()" class="bg-pal-black text-white px-8 py-3 rounded-lg text-lg font-semibold ml-4 hidden">
+                         ✨ <span data-translate="summarizeFile">تلخيص هذا الملف</span>
+                    </button>
+                </div>
+
+                <!-- Progress -->
+                <div id="progressSection" class="mt-8 hidden">
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="bg-tertiary rounded-full h-3 overflow-hidden">
+                        <div id="progressBar" class="progress-bar h-full w-0"></div>
+                    </div>
+                    <p id="progressText" class="text-center text-secondary mt-2" data-translate="processing">جاري المعالجة...</p>
+                </div>
+
+                <!-- Results -->
+                <div id="resultsSection" class="mt-8 hidden">
+                     <div class="bg-green-500 bg-opacity-10 border border-green-500 border-opacity-30 rounded-lg p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 text-2xl ml-3"></i>
+                                <h3 class="text-lg font-semibold text-green-300" data-translate="success">تمت المعالجة بنجاح!</h3>
+                            </div>
+                            <button onclick="resetToolUI()" class="text-secondary hover:text-primary">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                        <div id="downloadLinks" class="space-y-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Google AdSense Ad Unit -->
+    <section class="py-8 bg-secondary">
+        <div class="container mx-auto px-4 ad-container-placeholder">
+            <p class="text-center text-secondary text-sm mb-4">Advertisement</p>
+            <!-- 
+                !!! تنبيه هام !!!
+                لإصلاح خطأ الإعلانات، يجب استبدال "1234567890" أدناه 
+                بمعرف الوحدة الإعلانية (Ad Slot ID) الحقيقي من حسابك في Google AdSense.
+            -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5037132678119641"
+                 data-ad-slot="1234567890" 
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 try {
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                 } catch (e) {
+                    console.error("AdSense Error:", e);
+                 }
+            </script>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-bg text-white py-12">
+        <div class="container mx-auto px-4">
+             <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center ml-3">
+                            <span class="text-white font-bold text-lg">GP</span>
+                        </div>
+                        <h3 class="text-xl font-bold" data-translate="footerSiteName">غزة PDF</h3>
+                    </div>
+                    <p class="text-gray-400" data-translate="footerDesc">منصة غزة لمعالجة ملفات PDF</p>
+                    <p class="text-green-400 mt-2 font-semibold" data-translate="footerProfit">100% للأرباح لغزة</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4" data-translate="footerTools">الأدوات</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#tools" onclick="selectTool('merge')" class="hover:text-white transition" data-translate="footerMerge">دمج PDF</a></li>
+                        <li><a href="#tools" onclick="selectTool('split')" class="hover:text-white transition" data-translate="footerSplit">تقسيم PDF</a></li>
+                        <li><a href="#tools" onclick="selectTool('compress')" class="hover:text-white transition" data-translate="footerCompress">ضغط PDF</a></li>
+                        <li><a href="#tools" onclick="selectTool('pdf2jpg')" class="hover:text-white transition" data-translate="footerConvert">PDF إلى JPG</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4" data-translate="footerSite">الموقع</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" onclick="showModal('about')" class="hover:text-white transition" data-translate="footerAbout">عن الموقع</a></li>
+                        <li><a href="#contact-section" class="hover:text-white transition" data-translate="footerContact">اتصل بنا</a></li>
+                        <li><a href="#" onclick="showModal('support')" class="hover:text-white transition" data-translate="footerSupport">الدعم</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4" data-translate="footerFollow">تابعنا</h4>
+                    <div class="flex space-x-reverse space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <button onclick="document.getElementById('donate-section').scrollIntoView({ behavior: 'smooth' })" class="bg-gaza text-white px-4 py-2 rounded hover:bg-red-800 transition text-sm">
+                            <i class="fab fa-bitcoin ml-2"></i>
+                            <span data-translate="donateCrypto">تبرع بالكريبتو</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 غزة PDF. <span data-translate="footerRights">جميع الحقوق محفوظة.</span></p>
+                <p class="mt-2 text-green-400" data-translate="footerGazaSupport">100% مكرس لدعم غزة وفلسطين</p>
+                <p class="mt-2 text-sm">صُمم في غزة ❤️</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modals -->
+    <div id="summaryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('summary')">&times;</span>
+            <h2 class="text-2xl font-bold text-gaza mb-4" data-translate="summaryTitle">ملخص الملف</h2>
+            <div id="summary-content" class="prose max-w-none text-secondary min-h-[200px] flex items-center justify-center">
+                 <div id="summary-spinner" class="loading-spinner"></div>
+                 <div id="summary-text" class="text-primary"></div>
+            </div>
+        </div>
+    </div>
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('about')">&times;</span>
+            <h2 class="text-2xl font-bold text-gaza mb-4" data-translate="aboutTitle">عن غزة PDF</h2>
+            <div class="prose max-w-none text-secondary">
+                 <p data-translate="aboutDesc1">
+                    غزة PDF هي منصة احترافية لمعالجة ملفات PDF تهدف إلى توفير أفضل الأدوات مجاناً للجميع. تأسست المنصة من قلب غزة، ونعمل بكل تفانٍ لدعم أهلنا في غزة.
+                </p>
+                 <p data-translate="aboutDesc2">
+                    نحن نؤمن بأهمية توفير أدوات رقمية قوية ومجانية للجميع، مع الحفاظ على خصوصية وأمان المستخدمين. كل استخدام لمنصتنا هو مساهمة مباشرة في دعم أهالي غزة.
+                </p>
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gaza" data-translate="aboutMission">مهمتنا</h3>
+                 <p data-translate="aboutMissionDesc">
+                    تمكين المستخدمين من معالجة ملفات PDF بسهولة وسرعة، مع دعم أهلنا في غزة من خلال التبرع بـ 100% من الأرباح.
+                </p>
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gaza" data-translate="aboutVision">رؤيتنا</h3>
+                 <p data-translate="aboutVisionDesc">
+                    أن نكون الخيار الأول لمعالجة PDF في العالم العربي، مع المساهمة في دعم التعليم والتطوير في غزة وفلسطين. نسعى لجعل التكنولوجيا أداة للتغيير الإيجابي في مجتمعاتنا.
+                </p>
+                <div class="mt-6 bg-green-500 bg-opacity-10 p-4 rounded-lg">
+                    <h4 class="font-semibold text-gaza mb-2" data-translate="ourPromise">وعدنا لكم</h4>
+                    <ul class="space-y-1 text-gaza">
+                        <li>• 100% من الأرباح تذهب لدعم غزة</li>
+                        <li>• جميع الأدوات مجانية للأبد</li>
+                        <li>• خصوصية وأمان تامين لملفاتكم</li>
+                        <li>• شفافية كاملة في جميع العمليات</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="supportModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('support')">&times;</span>
+            <h2 class="text-2xl font-bold text-gaza mb-4" data-translate="supportTitle">الدعم الفني</h2>
+            <div class="space-y-6 text-secondary">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2 text-gaza" data-translate="supportContact">تواصل معنا</h3>
+                    <p data-translate="supportContactDesc">
+                        إذا واجهتك أي مشكلة أو كان لديك أي سؤال، لا تتردد في التواصل معنا:
+                    </p>
+                    <div class="bg-secondary p-4 rounded-lg">
+                        <p class="flex items-center mb-2">
+                            <i class="fas fa-envelope text-gaza ml-2"></i>
+                            <span class="text-primary">yazanalkord05@gmail.com</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone text-gaza ml-2"></i>
+                            <span class="text-primary">+970 594 850 560</span>
+                        </p>
+                    </div>
+                </div>
+                 <div>
+                    <h3 class="text-lg font-semibold mb-2 text-gaza" data-translate="supportFAQ">الأسئلة الشائعة</h3>
+                    <div class="space-y-3">
+                        <div class="border-b border-border-color pb-3">
+                            <h4 class="font-medium text-gaza" data-translate="faq1Q">هل الموقع مجاني؟</h4>
+                            <p class="text-sm" data-translate="faq1A">نعم، جميع الأدوات مجانية بالكامل ولا تتطلب تسجيل.</p>
+                        </div>
+                        <div class="border-b border-border-color pb-3">
+                            <h4 class="font-medium text-gaza" data-translate="faq2Q">هل ملفاتي آمنة؟</h4>
+                            <p class="text-sm" data-translate="faq2A">نعم، جميع الملفات تتم معالجتها على جهازك وتحذف تلقائياً بعد المعالجة.</p>
+                        </div>
+                        <div class="border-b border-border-color pb-3">
+                            <h4 class="font-medium text-gaza" data-translate="faq3Q">كيف يتم دعم غزة؟</h4>
+                            <p class="text-sm" data-translate="faq3A">100% من الأرباح تذهب مباشرة لدعم أهالي غزة من خلال التبرعات للجمعيات الخيرية المعتمدة.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gaza" data-translate="faq4Q">ما هي الصيغ المدعومة؟</h4>
+                            <p class="text-sm" data-translate="faq4A">ندعم PDF, Word, Excel, PowerPoint, الصور, والنصوص.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Global variables, translations, toolNames...
+        let selectedTool = '';
+        let uploadedFiles = [];
+        let currentLanguage = 'ar';
+        const geminiApiKey = 'AIzaSyAGaaxBxjCStYTiX8A9W7tI1l1QzQ3pE50'; // API Key hardcoded
+        const translations = {
+            ar: {
+                siteName: "غزة PDF", profitGaza: "100% للأرباح لغزة", navAbout: "عن الموقع", navSupport: "الدعم", navGaza: "عن غزة", navContact: "تواصل معنا",
+                heroTitle: "منصة غزة لمعالجة ملفات PDF", heroSubtitle: "أدوات احترافية مجانية لمعالجة ملفات PDF - دمج، تقسيم، ضغط، وتحويل",
+                askAboutGaza: "✨ اسأل عن غزة", askPlaceholder: "اكتب سؤالك هنا...", summaryTitle: "ملخص الملف", summarizeFile: "تلخيص هذا الملف",
+                summaryError: "عذراً، لم نتمكن من تلخيص الملف. قد يكون الملف صورة أو لا يحتوي على نص.", processing: "جاري المعالجة...",
+                success: "تمت المعالجة بنجاح!", download: "تحميل", rotationAngle: "زاوية التدوير:", selectedFiles: "الملفات المحددة:",
+                processFiles: "معالجة الملفات", dragDrop: "اسحب وأفلت الملفات هنا", or: "أو", chooseFiles: "اختر الملفات",
+                password: "كلمة المرور:", confirmPassword: "تأكيد كلمة المرور:", watermarkText: "نص العلامة المائية:",
+                splitMethod: "طريقة التقسيم:", splitEachPage: "تقسيم كل صفحة", splitByRange: "تحديد نطاق",
+                donateTitle: "ادعم غزة", donateSubtitle: "تبرعك يدعم صمود أهلنا في غزة", cryptoDonationTitle: "التبرع بالعملات الرقمية",
+                whyCrypto: "لماذا التبرع بالكريبتو؟", cryptoBenefit1: "تحويلات سريعة وآمنة عبر الحدود", cryptoBenefit2: "رسوم منخفضة مقارنة بالتحويلات التقليدية",
+                cryptoBenefit3: "وصول مباشر للمستفيدين بدون وسطاء", cryptoBenefit4: "خصوصية عالية وأمان للمعاملات", bitcoin: "Bitcoin (BTC)",
+                bitcoinAddress: "عنوان المحفظة:", usdt: "USDT (ERC20)", ethereumAddress: "عنوان المحفظة:", importantNote: "ملاحظة هامة:",
+                cryptoNote: "جميع التبرعات بالعملات الرقمية تذهب بالكامل لدعم أهالي غزة. نحن نستخدم محافظ آمنة ومشفرة لضمان وصول التبرعات لمستحقيها.",
+                contactTitle: "تواصل معنا", contactSubtitle: "نحن هنا من غزة لنستمع إليك وندعمك", contactInfo: "معلومات التواصل",
+                footerContact: "اتصل بنا", footerSupport: "الدعم", footerSite: "الموقع", footerTools: "الأدوات",
+                // PDF tool translations
+                mergePdf: "دمج PDF", mergePdfDesc: "دمج ملفات PDF متعددة",
+                splitPdf: "تقسيم PDF", splitPdfDesc: "تقسيم ملف PDF إلى صفحات",
+                compressPdf: "ضغط PDF", compressPdfDesc: "تقليل حجم ملفات PDF",
+                pdfToJpg: "PDF إلى JPG", pdfToJpgDesc: "تحويل PDF إلى صور",
+                pdfToWord: "PDF إلى Word", pdfToWordDesc: "استخراج النصوص من PDF",
+                rotatePdf: "تدوير PDF", rotatePdfDesc: "تدوير صفحات PDF",
+                protectPdf: "حماية PDF", protectPdfDesc: "إضافة كلمة مرور",
+                unlockPdf: "فتح PDF", unlockPdfDesc: "إزالة كلمة المرور",
+                watermarkPdf: "علامة مائية", watermarkPdfDesc: "إضافة نص أو صورة",
+                aboutTitle: "عن غزة PDF", aboutDesc1: "غزة PDF هي منصة احترافية لمعالجة ملفات PDF تهدف إلى توفير أفضل الأدوات مجاناً للجميع. تأسست المنصة من قلب غزة، ونعمل بكل تفانٍ لدعم أهلنا في غزة.",
+                aboutDesc2: "نحن نؤمن بأهمية توفير أدوات رقمية قوية ومجانية للجميع، مع الحفاظ على خصوصية وأمان المستخدمين. كل استخدام لمنصتنا هو مساهمة مباشرة في دعم أهالي غزة.",
+                aboutMission: "مهمتنا", aboutMissionDesc: "تمكين المستخدمين من معالجة ملفات PDF بسهولة وسرعة، مع دعم أهلنا في غزة من خلال التبرع بـ 100% من الأرباح.",
+                aboutVision: "رؤيتنا", aboutVisionDesc: "أن نكون الخيار الأول لمعالجة PDF في العالم العربي، مع المساهمة في دعم التعليم والتطوير في غزة وفلسطين. نسعى لجعل التكنولوجيا أداة للتغيير الإيجابي في مجتمعاتنا.",
+                ourPromise: "وعدنا لكم", supportTitle: "الدعم الفني", supportContact: "تواصل معنا", supportContactDesc: "إذا واجهتك أي مشكلة أو كان لديك أي سؤال، لا تتردد في التواصل معنا:",
+                supportFAQ: "الأسئلة الشائعة", faq1Q: "هل الموقع مجاني؟", faq1A: "نعم، جميع الأدوات مجانية بالكامل ولا تتطلب تسجيل.",
+                faq2Q: "هل ملفاتي آمنة؟", faq2A: "نعم، جميع الملفات تتم معالجتها على جهازك وتحذف تلقائياً بعد المعالجة.",
+                faq3Q: "كيف يتم دعم غزة؟", faq3A: "100% من الأرباح تذهب مباشرة لدعم أهالي غزة من خلال التبرعات للجمعيات الخيرية المعتمدة.",
+                faq4Q: "ما هي الصيغ المدعومة؟", faq4A: "ندعم PDF, Word, Excel, PowerPoint, الصور, والنصوص.",
+                apiKeyMissing: "الرجاء إدخال مفتاح Gemini API في الإعدادات أولاً.", apiKeySaved: "تم حفظ مفتاح API بنجاح.",
+            },
+            en: {
+                 siteName: "Gaza PDF", profitGaza: "100% Profits to Gaza", navAbout: "About", navSupport: "Support", navGaza: "About Gaza", navContact: "Contact Us",
+                heroTitle: "Gaza PDF Processing Platform", heroSubtitle: "Professional free tools for PDF processing - merge, split, compress, and convert",
+                askAboutGaza: "✨ Ask About Gaza", askPlaceholder: "Type your question here...", summaryTitle: "File Summary", summarizeFile: "Summarize this File",
+                summaryError: "Sorry, we could not summarize the file. It might be an image or contain no text.", processing: "Processing...",
+                success: "Processing successful!", download: "Download", rotationAngle: "Rotation Angle:", selectedFiles: "Selected Files:",
+                processFiles: "Process Files", dragDrop: "Drag & drop files here", or: "or", chooseFiles: "Choose Files",
+                password: "Password:", confirmPassword: "Confirm Password:", watermarkText: "Watermark Text:",
+                splitMethod: "Split Method:", splitEachPage: "Split each page", splitByRange: "Select range",
+                donateTitle: "Support Gaza", donateSubtitle: "Your donation supports the resilience of our people in Gaza", cryptoDonationTitle: "Donate with Cryptocurrency",
+                whyCrypto: "Why donate with crypto?", cryptoBenefit1: "Fast and secure cross-border transfers", cryptoBenefit2: "Low fees compared to traditional transfers",
+                cryptoBenefit3: "Direct access to beneficiaries without intermediaries", cryptoBenefit4: "High privacy and security for transactions", bitcoin: "Bitcoin (BTC)",
+                bitcoinAddress: "Wallet Address:", usdt: "USDT (ERC20)", ethereumAddress: "Wallet Address:", importantNote: "Important Note:",
+                cryptoNote: "All cryptocurrency donations go entirely to support the people of Gaza. We use secure and encrypted wallets to ensure donations reach their recipients.",
+                contactTitle: "Contact Us", contactSubtitle: "We are here from Gaza to listen and support you", contactInfo: "Contact Information",
+                footerContact: "Contact Us", footerSupport: "Support", footerSite: "Site", footerTools: "Tools",
+                // PDF tool translations
+                mergePdf: "Merge PDF", mergePdfDesc: "Merge multiple PDF files",
+                splitPdf: "Split PDF", splitPdfDesc: "Split PDF file into pages",
+                compressPdf: "Compress PDF", compressPdfDesc: "Reduce PDF file sizes",
+                pdfToJpg: "PDF to JPG", pdfToJpgDesc: "Convert PDF to images",
+                pdfToWord: "PDF to Word", pdfToWordDesc: "Extract text from PDF",
+                rotatePdf: "Rotate PDF", rotatePdfDesc: "Rotate PDF pages",
+                protectPdf: "Protect PDF", protectPdfDesc: "Add password",
+                unlockPdf: "Unlock PDF", unlockPdfDesc: "Remove password",
+                watermarkPdf: "Watermark", watermarkPdfDesc: "Add text or image",
+                aboutTitle: "About Gaza PDF", aboutDesc1: "Gaza PDF is a professional PDF processing platform that aims to provide the best tools for free to everyone. Founded from the heart of Gaza, we work with dedication to support our people in Gaza.",
+                aboutDesc2: "We believe in the importance of providing powerful and free digital tools for everyone, while maintaining the privacy and security of our users. Every use of our platform is a direct contribution to supporting the people of Gaza.",
+                aboutMission: "Our Mission", aboutMissionDesc: "To empower users to process PDF files easily and quickly, while supporting our people in Gaza by donating 100% of the profits.",
+                aboutVision: "Our Vision", aboutVisionDesc: "To be the first choice for PDF processing in the Arab world, while contributing to the support of education and development in Gaza and Palestine. We strive to make technology a tool for positive change in our communities.",
+                ourPromise: "Our Promise", supportTitle: "Technical Support", supportContact: "Contact Us", supportContactDesc: "If you encounter any problem or have any questions, do not hesitate to contact us:",
+                supportFAQ: "Frequently Asked Questions", faq1Q: "Is the site free?", faq1A: "Yes, all tools are completely free and do not require registration.",
+                faq2Q: "Are my files secure?", faq2A: "Yes, all files are processed on your device and are automatically deleted after processing.",
+                faq3Q: "How is Gaza supported?", faq3A: "100% of the profits go directly to support the people of Gaza through donations to accredited charities.",
+                faq4Q: "What formats are supported?", faq4A: "We support PDF, Word, Excel, PowerPoint, images, and text files.",
+            }
+        };
+        const toolNames = {
+            ar: { 'merge': 'دمج ملفات PDF', 'split': 'تقسيم ملف PDF', 'compress': 'ضغط ملفات PDF', 'rotate': 'تدوير ملف PDF', 'pdf2jpg': 'تحويل PDF إلى صور', 'pdf2word': 'تحويل PDF إلى Word', 'protect': 'حماية PDF', 'unlock': 'فتح PDF', 'watermark': 'إضافة علامة مائية' },
+            en: { 'merge': 'Merge PDF Files', 'split': 'Split PDF File', 'compress': 'Compress PDF Files', 'rotate': 'Rotate PDF File', 'pdf2jpg': 'PDF to JPG', 'pdf2word': 'PDF to Word', 'protect': 'Protect PDF', 'unlock': 'Unlock PDF', 'watermark': 'Add Watermark' }
+        };
+
+        // --- All Functions ---
+        
+        function initLanguage() {
+            const savedLang = localStorage.getItem('gazapdf-lang') || 'ar';
+            changeLanguage(savedLang, true);
+        }
+
+        function changeLanguage(lang, initial = false) {
+            currentLanguage = lang;
+            localStorage.setItem('gazapdf-lang', lang);
+            updateLanguage();
+            if (!initial) toggleLangDropdown();
+        }
+
+        function updateLanguage() {
+            document.documentElement.lang = currentLanguage;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.body.className = currentLanguage === 'en' ? 'en' : '';
+            
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.innerHTML = translations[currentLanguage][key];
+                }
+            });
+
+            document.getElementById('gaza-chat-input').placeholder = translations[currentLanguage].askPlaceholder;
+            document.getElementById('currentLang').textContent = currentLanguage === 'ar' ? 'العربية' : 'English';
+            document.querySelectorAll('.lang-option').forEach(option => option.classList.remove('active'));
+            const activeOption = document.querySelector(`.lang-option[onclick="changeLanguage('${currentLanguage}')"]`);
+            if (activeOption) activeOption.classList.add('active');
+        }
+
+        function toggleLangDropdown() {
+            document.getElementById('langDropdown').classList.toggle('hidden');
+        }
+
+        function showModal(type) {
+            const modal = document.getElementById(type + 'Modal');
+            if(modal) modal.style.display = 'block';
+        }
+
+        function closeModal(type) {
+            const modal = document.getElementById(type + 'Modal');
+            if(modal) modal.style.display = 'none';
+        }
+        
+        function selectTool(tool) {
+            selectedTool = tool;
+            document.getElementById('toolTitle').textContent = toolNames[currentLanguage]?.[tool] || tool;
+            const uploadSection = document.getElementById('uploadSection');
+            uploadSection.classList.remove('hidden');
+            uploadSection.scrollIntoView({ behavior: 'smooth' });
+            
+            const toolOptions = document.getElementById('toolOptions');
+            document.querySelectorAll('#toolOptions > div').forEach(el => el.classList.add('hidden'));
+
+            const optionsDiv = document.getElementById(tool + 'Options');
+            if (optionsDiv) {
+                toolOptions.classList.remove('hidden');
+                optionsDiv.classList.remove('hidden');
+            } else {
+                 toolOptions.classList.add('hidden');
+            }
+
+            resetToolUI();
+        }
+
+        function resetToolUI() {
+            uploadedFiles = [];
+            const filesContainer = document.getElementById('filesContainer');
+            if (filesContainer) filesContainer.innerHTML = '';
+            document.getElementById('fileList').classList.add('hidden');
+            document.getElementById('processSection').classList.add('hidden');
+            document.getElementById('summarizeBtn').classList.add('hidden');
+            document.getElementById('resultsSection').classList.add('hidden');
+            document.getElementById('progressSection').classList.add('hidden');
+            document.getElementById('fileInput').value = '';
+        }
+
+        async function callGemini(systemPrompt, userQuery, useGrounding) {
+            if (!geminiApiKey) {
+                showNotification("Gemini API Key is not set.", 'error');
+                throw new Error("Gemini API key is missing.");
+            }
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${geminiApiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+            if (useGrounding) payload.tools = [{ "google_search": {} }];
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) throw new Error(`API call failed: ${response.status}`);
+            return await response.json();
+        }
+
+        async function askGeminiAboutGaza() {
+            const chatInput = document.getElementById('gaza-chat-input');
+            const chatSubmit = document.getElementById('gaza-chat-submit');
+            const chatHistory = document.getElementById('gaza-chat-history');
+            const userQuery = chatInput.value.trim();
+
+            if (!userQuery) return;
+            chatInput.value = '';
+            chatSubmit.disabled = true;
+
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'chat-message user-message';
+            userMessageDiv.textContent = userQuery;
+            chatHistory.appendChild(userMessageDiv);
+
+            const spinnerDiv = document.createElement('div');
+            spinnerDiv.className = 'chat-message gemini-message flex justify-center items-center';
+            spinnerDiv.innerHTML = '<div class="loading-spinner w-6 h-6"></div>';
+            chatHistory.appendChild(spinnerDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            const systemPrompt = "You are a helpful assistant specializing in Gaza, Palestine. Answer questions factually and respectfully, using Google Search for accuracy. Answer in the user's language.";
+            try {
+                const result = await callGemini(systemPrompt, userQuery, true);
+                const responseText = result.candidates?.[0]?.content?.parts?.[0]?.text || (currentLanguage === 'ar' ? "عذراً، لم أجد إجابة." : "Sorry, I couldn't find an answer.");
+                spinnerDiv.innerHTML = responseText.replace(/\n/g, '<br>');
+            } catch (error) {
+                console.error('Gemini Chat Error:', error);
+                spinnerDiv.textContent = currentLanguage === 'ar' ? 'حدث خطأ. حاول مرة أخرى.' : 'An error occurred. Please try again.';
+            } finally {
+                chatSubmit.disabled = false;
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
+        }
+        
+        async function summarizePDF() {
+            if (uploadedFiles.length !== 1) return;
+            showModal('summary');
+            const summarySpinner = document.getElementById('summary-spinner');
+            const summaryText = document.getElementById('summary-text');
+            summarySpinner.classList.remove('hidden');
+            summaryText.innerHTML = '';
+            try {
+                const file = uploadedFiles[0];
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+                const pdf = await pdfjsLib.getDocument({data: await file.arrayBuffer()}).promise;
+                let fullText = '';
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    const page = await pdf.getPage(i);
+                    const textContent = await page.getTextContent();
+                    fullText += textContent.items.map(item => item.str).join(' ') + '\n';
+                    if (fullText.length > 20000) break;
+                }
+                if (fullText.trim().length < 100) throw new Error("No text found in PDF.");
+                const systemPrompt = "You are an expert summarizer. Summarize the text from a PDF into key bullet points. The summary must be in the same language as the text.";
+                const result = await callGemini(systemPrompt, fullText, false);
+                const summary = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (!summary) throw new Error("Invalid API response.");
+                summaryText.innerHTML = summary.replace(/\n/g, '<br>');
+            } catch (error) {
+                console.error('Summarize PDF Error:', error);
+                summaryText.textContent = translations[currentLanguage].summaryError;
+            } finally {
+                summarySpinner.classList.add('hidden');
+            }
+        }
+
+        function handleFiles(files) {
+            resetToolUI();
+            uploadedFiles = Array.from(files);
+            if (uploadedFiles.length > 0) {
+                displayFiles();
+                document.getElementById('fileList').classList.remove('hidden');
+                document.getElementById('processSection').classList.remove('hidden');
+                if(uploadedFiles.length === 1 && uploadedFiles[0].type === 'application/pdf') {
+                    document.getElementById('summarizeBtn').classList.remove('hidden');
+                }
+            }
+        }
+        
+        function displayFiles() {
+            const container = document.getElementById('filesContainer');
+            container.innerHTML = '';
+            uploadedFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item flex items-center justify-between p-3 rounded-lg';
+                fileItem.innerHTML = `<div class="flex items-center truncate"><i class="fas fa-file-alt text-xl ml-3 text-secondary"></i><div class="truncate"><p class="font-medium text-primary truncate">${file.name}</p><p class="text-sm text-secondary">${(file.size / 1024).toFixed(1)} KB</p></div></div><button onclick="removeFile(${index})" class="text-red-500 hover:text-red-700 p-2"><i class="fas fa-trash"></i></button>`;
+                container.appendChild(fileItem);
+            });
+        }
+        
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            handleFiles(uploadedFiles);
+        }
+
+        async function processFiles() {
+            document.getElementById('processSection').classList.add('hidden');
+            document.getElementById('progressSection').classList.remove('hidden');
+            updateProgress(0);
+
+            try {
+                let resultFiles = [];
+                const { PDFDocument, rgb, degrees } = PDFLib;
+
+                switch(selectedTool) {
+                    case 'merge':
+                        if (uploadedFiles.length < 2) throw new Error("Please select at least two PDF files to merge.");
+                        const mergedPdf = await PDFDocument.create();
+                        for (let i = 0; i < uploadedFiles.length; i++) {
+                            const pdf = await PDFDocument.load(await uploadedFiles[i].arrayBuffer());
+                            const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                            pages.forEach(page => mergedPdf.addPage(page));
+                            updateProgress((i + 1) / uploadedFiles.length * 100);
+                        }
+                        const mergedPdfBytes = await mergedPdf.save();
+                        resultFiles = [{ name: 'merged.pdf', data: mergedPdfBytes, type: 'application/pdf' }];
+                        break;
+                    
+                    case 'split':
+                         if (uploadedFiles.length !== 1) throw new Error("Please select one PDF file to split.");
+                         const originalPdf = await PDFDocument.load(await uploadedFiles[0].arrayBuffer());
+                         resultFiles = [];
+                         for(let i=0; i<originalPdf.getPageCount(); i++){
+                            const newPdf = await PDFDocument.create();
+                            const [page] = await newPdf.copyPages(originalPdf, [i]);
+                            newPdf.addPage(page);
+                            const pdfBytes = await newPdf.save();
+                            resultFiles.push({ name: `page_${i + 1}.pdf`, data: pdfBytes, type: 'application/pdf' });
+                            updateProgress((i + 1) / originalPdf.getPageCount() * 100);
+                         }
+                        break;
+                    
+                    case 'compress':
+                        if (uploadedFiles.length !== 1) throw new Error("Please select one PDF file to compress.");
+                        const pdfToCompress = await PDFDocument.load(await uploadedFiles[0].arrayBuffer());
+                        updateProgress(50);
+                        const compressedBytes = await pdfToCompress.save({ useObjectStreams: false });
+                        resultFiles = [{ name: 'compressed.pdf', data: compressedBytes, type: 'application/pdf' }];
+                        updateProgress(100);
+                        break;
+
+                    case 'rotate':
+                        if (uploadedFiles.length !== 1) throw new Error("Please select one PDF file to rotate.");
+                        const angle = parseInt(document.getElementById('rotationAngleSelect').value);
+                        const pdfToRotate = await PDFDocument.load(await uploadedFiles[0].arrayBuffer());
+                        pdfToRotate.getPages().forEach((page, idx) => {
+                            const currentRotation = page.getRotation().angle;
+                            page.setRotation(degrees(currentRotation + angle));
+                            updateProgress((idx + 1) / pdfToRotate.getPageCount() * 100);
+                        });
+                        const rotatedBytes = await pdfToRotate.save();
+                        resultFiles = [{ name: 'rotated.pdf', data: rotatedBytes, type: 'application/pdf' }];
+                        break;
+
+                    case 'protect':
+                         if (uploadedFiles.length !== 1) throw new Error("Please select one PDF file.");
+                         const password = document.getElementById('protectPassword').value;
+                         const confirmPassword = document.getElementById('protectPasswordConfirm').value;
+                         if (password !== confirmPassword || !password) throw new Error("Passwords do not match or are empty.");
+                         const pdfToProtect = await PDFDocument.load(await uploadedFiles[0].arrayBuffer());
+                         showNotification("Password protection is a complex feature, this is a placeholder.", "info");
+                         const protectedBytes = await pdfToProtect.save();
+                         resultFiles = [{ name: 'protected.pdf', data: protectedBytes, type: 'application/pdf' }];
+                         break;
+
+                    case 'unlock':
+                        if (uploadedFiles.length !== 1) throw new Error("Please select one PDF file.");
+                        const unlockPassword = document.getElementById('unlockPassword').value;
+                        const unlockOptions = unlockPassword ? { password: unlockPassword } : {};
+                        const pdfToUnlock = await PDFDocument.load(await uploadedFiles[0].arrayBuffer(), unlockOptions);
+                        const unlockedBytes = await pdfToUnlock.save();
+                        resultFiles = [{ name: 'unlocked.pdf', data: unlockedBytes, type: 'application/pdf' }];
+                        break;
+
+                    case 'watermark':
+                        if (uploadedFiles.length !== 1) throw new Error("Please select one PDF file.");
+                        const text = document.getElementById('watermarkText').value;
+                        if (!text) throw new Error("Watermark text cannot be empty.");
+                        const pdfToWatermark = await PDFDocument.load(await uploadedFiles[0].arrayBuffer());
+                        const pages = pdfToWatermark.getPages();
+                        for(const page of pages) {
+                            const { width, height } = page.getSize();
+                            page.drawText(text, {
+                                x: width / 2 - 100,
+                                y: height / 2,
+                                size: 50,
+                                color: rgb(0.95, 0.1, 0.1),
+                                opacity: 0.5,
+                                rotate: degrees(-45)
+                            });
+                        }
+                        const watermarkedBytes = await pdfToWatermark.save();
+                        resultFiles = [{ name: 'watermarked.pdf', data: watermarkedBytes, type: 'application/pdf' }];
+                        break;
+                    
+                    case 'pdf2jpg':
+                         if (uploadedFiles.length !== 1) throw new Error("Please select one PDF file.");
+                         resultFiles = [];
+                         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+                         const pdfDoc = await pdfjsLib.getDocument({data: await uploadedFiles[0].arrayBuffer()}).promise;
+                         for(let i=1; i <= pdfDoc.numPages; i++){
+                             const page = await pdfDoc.getPage(i);
+                             const viewport = page.getViewport({ scale: 1.5 });
+                             const canvas = document.createElement('canvas');
+                             const context = canvas.getContext('2d');
+                             canvas.height = viewport.height;
+                             canvas.width = viewport.width;
+                             await page.render({ canvasContext: context, viewport: viewport }).promise;
+                             const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+                             resultFiles.push({ name: `page_${i}.jpg`, data: await blob.arrayBuffer(), type: 'image/jpeg' });
+                             updateProgress(i / pdfDoc.numPages * 100);
+                         }
+                        break;
+                    
+                    case 'pdf2word':
+                        if (uploadedFiles.length !== 1) throw new Error("Please select one PDF file.");
+                        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+                        const pdfWordDoc = await pdfjsLib.getDocument({data: await uploadedFiles[0].arrayBuffer()}).promise;
+                        let fullText = '';
+                        for (let i = 1; i <= pdfWordDoc.numPages; i++) {
+                            const page = await pdfWordDoc.getPage(i);
+                            const textContent = await page.getTextContent();
+                            fullText += textContent.items.map(item => item.str).join(' ') + '\n\n';
+                            updateProgress(i / pdfWordDoc.numPages * 100);
+                        }
+                        const blobWord = new Blob([fullText], { type: 'text/plain;charset=utf-8' });
+                        resultFiles = [{ name: 'extracted_text.txt', data: await blobWord.arrayBuffer(), type: 'text/plain' }];
+                        break;
+
+                    default:
+                        showNotification('This tool is not fully implemented yet.', 'error');
+                        throw new Error("Tool not implemented.");
+                }
+                showResults(resultFiles);
+            } catch(error) {
+                console.error("Processing Error:", error);
+                showNotification("An error occurred: " + error.message, 'error');
+                resetToolUI();
+            }
+        }
+        
+        function updateProgress(percent) {
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percent + '%';
+            document.getElementById('progressText').textContent = `${translations[currentLanguage].processing} ${Math.round(percent)}%`;
+        }
+
+        function showResults(resultFiles) {
+            document.getElementById('progressSection').classList.add('hidden');
+            document.getElementById('resultsSection').classList.remove('hidden');
+            const downloadLinks = document.getElementById('downloadLinks');
+            downloadLinks.innerHTML = '';
+            resultFiles.forEach(file => {
+                const blob = new Blob([file.data], { type: file.type });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('div');
+                link.className = 'flex items-center justify-between bg-secondary p-3 rounded';
+                link.innerHTML = `<span>${file.name}</span> <a href="${url}" download="${file.name}" class="btn-primary px-4 py-1 rounded-md text-sm">${translations[currentLanguage].download}</a>`;
+                downloadLinks.appendChild(link);
+            });
+        }
+        
+        function showNotification(message, type = 'error') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type === 'error' ? 'bg-red-600' : (type === 'info' ? 'bg-blue-600' : 'bg-green-600')}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const openIcon = document.getElementById('menu-open-icon');
+            const closeIcon = document.getElementById('menu-close-icon');
+
+            mobileMenu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const userTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        const themeCheck = () => {
+            if (userTheme === 'dark' || (!userTheme && systemTheme)) {
+                document.documentElement.classList.add('dark');
+            }
+        };
+
+        const themeSwitch = () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            themeCheck();
+            initLanguage();
+
+            themeToggle.addEventListener('click', themeSwitch);
+
+            const chatInput = document.getElementById('gaza-chat-input');
+            const chatSubmit = document.getElementById('gaza-chat-submit');
+            chatSubmit.addEventListener('click', askGeminiAboutGaza);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') askGeminiAboutGaza();
+            });
+
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+            dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+            dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+            fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+            document.addEventListener('click', function(event) {
+                const langSwitcher = document.querySelector('.lang-switcher');
+                const langDropdown = document.getElementById('langDropdown');
+                if (langSwitcher && !langSwitcher.contains(event.target)) {
+                    langDropdown.classList.add('hidden');
+                }
+            });
+
+            window.onclick = function(event) {
+                if (event.target.classList.contains('modal')) {
+                    // Find the modal ID and close it
+                    const modalId = event.target.id.replace('Modal', '');
+                    closeModal(modalId);
+                }
+            }
+
+            // Event listener for split type radio buttons
+            document.querySelectorAll('input[name="splitType"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    document.getElementById('splitRange').classList.toggle('hidden', this.value !== 'range');
+                });
+            });
+
+            
+            document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
+
+        });
+    </script>
+</body>
+</html>
+
